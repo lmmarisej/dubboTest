@@ -3,27 +3,22 @@ spring:
     username: root
     password: lmmgo
     url: jdbc:mysql://localhost:3306/demo4_distributed_transaction?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
   application:
-    name: sample-account-service
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-
+    name: sample-order-service
 dubbo:
   application:
-    name: sample-account-service
+    name: sample-order-service
   registry:
     address: nacos://127.0.0.1:8848
   protocol:
     name: dubbo
-    port: 20882
+    port: 20880
   scan:
-    base-packages: org.lmmarise.seata.account.provider.api.impl
+    base-packages: org.lmmarise.seata.order.api.impl
 seata:
   enabled: true
-  # tx-service-group: sample-account-service
+  tx-service-group: sample-order-service
   transport:
     type: TCP
     server: NIO
@@ -47,7 +42,7 @@ seata:
     vgroup-mapping: default
     enable-degrade: false
     disable-global-transaction: false
-    # grouplist: 192.168.216.128:8091
+    #grouplist: 192.168.216.128:8091
   client:
     rm:
       lock:
