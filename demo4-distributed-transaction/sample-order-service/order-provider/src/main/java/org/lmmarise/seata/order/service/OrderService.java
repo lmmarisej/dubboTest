@@ -1,8 +1,8 @@
 package org.lmmarise.seata.order.service;
 
-import org.apache.dubbo.config.annotation.Service;
 import org.lmmarise.seata.order.entity.Order;
 import org.lmmarise.seata.order.repository.OrderRepository;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 

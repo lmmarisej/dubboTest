@@ -1,0 +1,1 @@
+insert into `tbl_account`(id, balance, user_id) values ( 1, '10000.00', '10001');

@@ -50,9 +50,12 @@ public class OrderServiceImpl implements IOrderService {
             orderService.createOrder(order);
             // 判断扣款状态（判断可以前置）
             if (accountRes.getCode() != SUCCESS.getCode()) {
-                return response.setResponseCode(FAILED);
+                response.setResponseCode(FAILED);
+                response.setMsg("扣款失败");
+            } else {
+                response.setResponseCode(SUCCESS);
+                response.setMsg("扣款成功");
             }
-            response.setResponseCode(SUCCESS);
         } catch (Exception e) {
             log.error("createOrder Occur Exception:" + e);
             response.setResponseCode(SYSTEM_EXCEPTION);

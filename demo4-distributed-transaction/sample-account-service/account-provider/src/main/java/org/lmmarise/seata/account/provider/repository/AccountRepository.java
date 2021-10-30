@@ -15,7 +15,7 @@ import javax.persistence.LockModeType;
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
     @Modifying
-    @Query("update Account a set a.balance = a.balance - ?1 where a.userId = ?2 and a.balance > 0")
+    @Query("update Account a set a.balance = a.balance - ?2 where a.userId = ?1 and a.balance > 0")
     int decreaseAccount(String userId, double doubleValue);
 
     /**

@@ -1,4 +1,4 @@
-package org.lmmarise.seata.order.entity;
+package org.lmmarise.seata.repo.entity;
 
 import lombok.*;
 
@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 /**
  * @author lmmarise.j@gmail.com
- * @since 2021/10/29 11:18 下午
+ * @since 2021/10/30 11:03 上午
  */
 @Getter
 @Setter
@@ -14,16 +14,14 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "tbl_order")
-public class Order {
+@Table(name = "tbl_repo")
+public class Repo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String orderNo;
-    private String userId;
+    @Column(unique = true)
     private String productCode;
+    private String name;
     @Column(columnDefinition = "int(11) default 0")
     private Integer count;
-    @Column(columnDefinition = "int(11) default 0")
-    private Double amount;
 }

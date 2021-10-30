@@ -26,9 +26,9 @@ public class IAccountServiceImpl implements IAccountService {
         try {
             int rs = accountService.decreaseAccount(accountDto.getUserId(), accountDto.getBalance().doubleValue());
             if (rs > 0) {
-                return new ObjectResponse<>(ResponseCode.SUCCESS);
+                return new ObjectResponse<>(ResponseCode.SUCCESS.getCode(), "扣款成功", null);
             }
-            return new ObjectResponse<>(ResponseCode.FAILED);
+            return new ObjectResponse<>(ResponseCode.FAILED.getCode(), "扣款失败", null);
         } catch (Exception e) {
             log.error("decreaseAccount Occur Exception:" + e);
             return new ObjectResponse<>(ResponseCode.SYSTEM_EXCEPTION.getCode(),

@@ -10,7 +10,7 @@ import java.math.BigDecimal;
  * @since 2021/10/29 10:00 下午
  */
 @Data
-public class OrderRequest implements Serializable{
+public class OrderRequest implements Serializable {
     private static final long serialVersionUID = -4916456555673668661L;
     private String userId;
     private String productCode;

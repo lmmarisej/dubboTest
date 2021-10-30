@@ -11,7 +11,7 @@ import org.lmmarise.seata.common.constants.ResponseCode;
 @Getter
 @Setter
 public class ObjectResponse<T> extends AbstractResponse {
-    private T data;
+    private Object data;
 
     public ObjectResponse() {
     }

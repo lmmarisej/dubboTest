@@ -1,43 +1,27 @@
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type: TRACE
-
-spring:
-  datasource:
-    username: root
-    password: lmmgo
-    url: jdbc:mysql://localhost:3306/demo4_account?useUnicode=true&characterEncoding=utf-8&useSSL=true&serverTimezone=UTC
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    data: classpath:data-mysql.sql
-    initialization-mode: always
-  application:
-    name: sample-account-service
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: create
-    properties:
-      format_sql: true
-
 dubbo:
-  application:
-    name: sample-account-service
   registry:
     address: nacos://127.0.0.1:8848
   protocol:
-    name: dubbo
-    port: 20882
+
   scan:
-    base-packages: org.lmmarise.seata.account.provider.api.impl
+      base-packages: org.lmmarise.seata.web.api.impl.controller
+spring:
+  application:
+    name: sample-rest-web
+
 seata:
+  # 开启自动装配
   enabled: true
-  # tx-service-group: sample-account-service
+  # 事务组，直接使用项目名
+  tx-service-group: ${spring.application.name}
   transport:
     type: TCP
     server: NIO
+    # client和server心跳检测
     heartbeat: true
+    # 客户端事务消息请求批量合并发送
     enable-client-batch-send-request: true
+    # 线程相关
     thread-factory:
       boss-thread-prefix: NettyBoss
       worker-thread-prefix: NettyServerNIOWorker
@@ -50,17 +34,25 @@ seata:
       worker-thread-size: 8
     shutdown:
       wait: 3
+    # 通信编码方式
     serialization: seata
+    # client和server通信数据压缩方式 gzip
     compressor: none
   service:
+    # TC集群，和seata-server保持一致
     vgroup-mapping: default
+    # 降级，根据连续错误次数降级，不走seata事务
     enable-degrade: false
-    disable-global-transaction: false
-    # grouplist: 192.168.216.128:8091
+    # 全局事物
+    disableGlobalTransaction: false
+    # TC服务列表，seata服务地址，注册中心为file时使用
+    #grouplist: 192.168.216.128:8091
   client:
     rm:
       lock:
+        # 校验或占用全局锁重试间隔
         lock-retry-interval: 10
+        # 分支事务与其它全局回滚事务冲突时策略
         lock-retry-policy-branch-rollback-on-conflict: true
         lock-retry-times: 30
     rm-async-commit-buffer-limit: 10000
@@ -70,14 +62,19 @@ seata:
     tm-commit-retry-count: 5
     tm-rollback-retry-count: 5
     undo:
+      # 自定义undo表名
       undo-log-table: undo_log
+      # 二阶段回滚镜像校验
       undo-data-validation: true
+      # undo序列化方式
       undo-log-serialization: jackson
     log:
+      # 日志异常输出概率
       exception-rate: 100
     support:
       spring:
-        datasource-autoproxy: true
+        # 数据源自动代理 本项目没有数据源，无需代理
+        datasource-autoproxy: false
   registry:
     type: nacos
     nacos:

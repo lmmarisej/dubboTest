@@ -3,13 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>sample-order-service</artifactId>
+        <artifactId>sample-repo-service</artifactId>
         <groupId>org.lmmarise.seata</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>order-provider</artifactId>
+    <artifactId>repo-provider</artifactId>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -18,12 +18,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.lmmarise.seata</groupId>
-            <artifactId>order-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.esotericsoftware</groupId>
             <artifactId>kryo</artifactId>
           <version>4.0.0</version>
@@ -31,10 +25,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>com.alibaba.boot</groupId>
@@ -69,20 +59,14 @@
             <optional>true</optional>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
             <version>8.0.19</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-jdk8</artifactId>
-            <version>1.3.1.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct-processor</artifactId>
-            <version>1.3.1.Final</version>
         </dependency>
         <dependency>
             <groupId>io.seata</groupId>
@@ -91,7 +75,7 @@
         </dependency>
         <dependency>
             <groupId>org.lmmarise.seata</groupId>
-            <artifactId>account-api</artifactId>
+            <artifactId>repo-api</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
