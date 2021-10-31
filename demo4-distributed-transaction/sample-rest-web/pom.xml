@@ -11,71 +11,81 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>org.lmmarise.seata</groupId>
-    <artifactId>sample-rest-web</artifactId>
+    <groupId>org.lmmarise.springcloud.seata</groupId>
+    <artifactId>sample-springcloud-rest-web</artifactId>
     <version>1.0-SNAPSHOT</version>
     <description>提供统一的业务REST接口服务</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
     </properties>
-
 
     <dependencies>
         <dependency>
-            <groupId>org.lmmarise.seata</groupId>
-            <artifactId>sample-seata-common</artifactId>
+            <groupId>org.lmmarise.springcloud.seata</groupId>
+            <artifactId>sample-springcloud-seata-common</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.lmmarise.seata</groupId>
+            <groupId>org.lmmarise.springcloud.seata</groupId>
             <artifactId>repo-api</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>org.lmmarise.seata</groupId>
+            <groupId>org.lmmarise.springcloud.seata</groupId>
             <artifactId>order-api</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
 
         <dependency>
-            <groupId>com.esotericsoftware</groupId>
-            <artifactId>kryo</artifactId>
-          <version>4.0.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.alibaba.boot</groupId>
-            <artifactId>nacos-discovery-spring-boot-starter</artifactId>
-            <version>0.2.4</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.alibaba.spring</groupId>
-                    <artifactId>spring-context-support</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.dubbo</groupId>
-            <artifactId>dubbo-spring-boot-starter</artifactId>
-            <version>2.7.5</version>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-dubbo</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-nacos-discovery</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-seata</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <dependency>
-            <groupId>io.seata</groupId>
-            <artifactId>seata-spring-boot-starter</artifactId>
-            <version>1.0.0</version>
-        </dependency>
     </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2.1.1.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

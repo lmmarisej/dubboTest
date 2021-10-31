@@ -27,7 +27,7 @@ public class RestOrderServiceImpl implements IRestOrderService {
     IOrderService orderService;
 
     @Override
-    @GlobalTransactional(timeoutMills = 300000, name = "sample-rest-web")
+    @GlobalTransactional(timeoutMills = 300000, name = "sample-rest-web")   // 经过测试，这里不是线程安全的
     public ObjectResponse<?> handleBusiness(OrderRequest orderRequest) throws Exception {
         log.info("开始全局事务:xid=" + RootContext.getXID());
         log.info("begin order: " + orderRequest);

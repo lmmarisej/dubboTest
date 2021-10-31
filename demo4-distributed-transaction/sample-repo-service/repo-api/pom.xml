@@ -3,17 +3,18 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>sample-repo-service</artifactId>
-        <groupId>org.lmmarise.seata</groupId>
+        <artifactId>sample-springcloud-repo-service</artifactId>
+        <groupId>org.lmmarise.springcloud.seata</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>repo-api</artifactId>
+
     <dependencies>
         <dependency>
-            <groupId>org.lmmarise.seata</groupId>
-            <artifactId>sample-seata-common</artifactId>
+            <groupId>org.lmmarise.springcloud.seata</groupId>
+            <artifactId>sample-springcloud-seata-common</artifactId>
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
