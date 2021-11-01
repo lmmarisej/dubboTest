@@ -1,0 +1,26 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: define_filter
+          predicates:
+            # 将 http://localhost:8088/gateway/** 匹配上的请求，全部转给 http://localhost:8081/say 处理
+            - Path=/gateway/**
+          filters:
+            - name: LmmDefine
+              args:
+                name: Lmm_Cxk
+            - name: RequestRateLimiter
+              args:
+                denyEmptyKey: false
+                emptyKeyStatus: SERVICE_UNAVAILABLE
+                keyResolver: '#{@ipAddressKeyResolver}'
+                redis-rate-limiter.replenishRate: 1
+                redis-rate-limiter.burstCapacity: 2
+            - StripPrefix=1
+          uri: http://localhost:8081/say
+  redis:
+    host: 127.0.0.1
+    port: 6379
+server:
+  port: 8088

@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 127.0.0.1:9876
+      bindings:
+        # output 为名称
+        output:
+          # output 发给 TopicTest
+          destination: TopicTest
+          group: PRODUCER_GROUP_TOPIC_TEST
+server:
+  port: 8081
